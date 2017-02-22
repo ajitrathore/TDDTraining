@@ -26,10 +26,11 @@ public class TimelineDataProvider implements ItemProvider{
     private MongoCollection collection;
 
     public TimelineDataProvider() {
-        this.database = new MongoClient(new MongoClientURI("mongodb://localhost:27017")).getDatabase("timelineDatabase");
+        this.database = new MongoClient(new MongoClientURI("mongodb://localhst:27017")).getDatabase("timelineDatabase");
         this.collection=this.database.getCollection("tddClass");
-        System.out.println(this.collection.count());
     }
+
+
 
     @Override
     public List<Item> fetchItems(Item ancestor, int count) {

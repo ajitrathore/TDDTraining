@@ -1,12 +1,15 @@
 package tdd.training.timeline.data.mongodb;
 
+import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import tdd.training.timeline.model.Item;
 
@@ -31,18 +34,29 @@ public class TImelineDataProviderTest {
 
     List<Item> dataItems=null;
 
+    MongoDatabase mockDatabase=null;
+
+    MongoClient mockClient=null;
+
     @Before
     public void setUp() throws Exception {
 
         dataItems=new ArrayList<Item>();
+        this.mockClient=mock(MongoClient.class);
+
+        when(mockClient.getDatabase(anyString())).thenReturn(mockDatabase);
+
+        this.mockCollection=mock(com.mongodb.client.MongoCollection.class);
 
         timelineDataProvider= Mockito.spy(new TimelineDataProvider());
-        this.mockCollection=mock(com.mongodb.client.MongoCollection.class);
+
         when(timelineDataProvider.getCollection()).thenReturn(mockCollection);
 
         iterable = mock(FindIterable.class);
         cursor = mock(MongoCursor.class);
         doReturn(mockCollection).when(timelineDataProvider).getCollection();
+
+
         when(mockCollection.find())
                 .thenReturn(iterable);
         when(iterable.iterator()).thenReturn(cursor);
@@ -50,6 +64,7 @@ public class TImelineDataProviderTest {
         //Setup Mock Data in database
 
         loadData();
+        MockitoAnnotations.initMocks(this);
     }
 
     private void loadData() {
