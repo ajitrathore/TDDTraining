@@ -27,6 +27,7 @@ import static org.mockito.Mockito.*;
  */
 public class TImelineDataProviderTest {
     TimelineDataProvider timelineDataProvider=null;
+
     MongoCollection mockCollection=null;
 
     FindIterable iterable=null;
@@ -64,7 +65,6 @@ public class TImelineDataProviderTest {
         //Setup Mock Data in database
 
         loadData();
-        MockitoAnnotations.initMocks(this);
     }
 
     private void loadData() {

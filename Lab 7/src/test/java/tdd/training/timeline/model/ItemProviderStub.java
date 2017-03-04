@@ -16,6 +16,10 @@ import static java.util.stream.Collectors.toList;
  */
 public class ItemProviderStub implements ItemProvider {
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
     private final Set<Item> items;
 
     ItemProviderStub() {
@@ -37,6 +41,11 @@ public class ItemProviderStub implements ItemProvider {
                 .filter(item -> isApplicable(null,item))
                 .limit( itemCount )
                 .collect( toList() );
+    }
+
+    @Override
+    public long getItemCount() {
+        return getItems().size();
     }
 
     private boolean isApplicable(Item ancestor, Item item) {

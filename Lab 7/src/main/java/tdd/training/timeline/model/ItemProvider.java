@@ -11,4 +11,5 @@ public interface ItemProvider {
 
     List<Item> fetchItems(Item ancestor, int itemCount );
 
+    long getItemCount();
 }

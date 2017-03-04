@@ -16,4 +16,10 @@ public class ItemProviderDummy implements ItemProvider {
     public List<Item> fetchItems(Item ancestor, int itemCount) {
         throw new UnsupportedOperationException(MESSAGE);
     }
+
+    @Override
+    public long getItemCount() {
+        throw new UnsupportedOperationException(MESSAGE);
+    }
+
 }

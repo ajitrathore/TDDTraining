@@ -252,7 +252,6 @@ Confirm that if fetchItems is called second time then it returns older items in 
 
         for(int i=0;i<dataItems.size()-1;i++) {
             assertTrue(dataItems.get(i).getTimeStamp() >= dataItems.get(i+1).getTimeStamp());
-
         }
     }
 
@@ -264,9 +263,11 @@ Confirm that if fetchItems is called second time then it returns older items in 
      */
 
     @Test
-    public void getTotalPostCount()
+    public void getItemCount()
     {
         final int TOTAL_COUNT=dataItems.size();
-        timelineDataProvider.getTotalPostCount();
+
+        assertTrue(TOTAL_COUNT==timelineDataProvider.getItemCount());
+
     }
 }

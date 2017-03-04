@@ -74,7 +74,8 @@ public class TimelineDataProvider implements ItemProvider{
 
     }
 
-    public long getTotalPostCount() {
+    @Override
+    public long getItemCount() {
         return getCollection().count();
     }
 }
